@@ -1,5 +1,14 @@
 import colors from 'vuetify/es5/util/colors'
 
+require('dotenv').config();
+const {API_KEY} = process.env;
+const {AUTH_DOMAIN} = process.env;
+const {DATABASE_URL} = process.env;
+const {PROJECT_ID} = process.env;
+const {STORAGE_BUCKET} = process.env;
+const {MESSAGING_SENDER_ID} = process.env;
+const {APP_ID} = process.env;
+
 export default {
   /*
   ** Nuxt rendering mode
@@ -37,6 +46,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~/plugins/firebase.js',
+    '~/plugins/cookies-to-state'
   ],
   /*
   ** Auto import components
@@ -55,12 +66,27 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:8080/'
+  },
+  proxy: {
+    '/api': '/',
+  },
+  env: {
+    API_KEY,
+    AUTH_DOMAIN,
+    DATABASE_URL,
+    PROJECT_ID,
+    STORAGE_BUCKET,
+    MESSAGING_SENDER_ID,
+    APP_ID,
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -68,7 +94,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

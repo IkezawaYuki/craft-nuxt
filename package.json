@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "cookie-universal-nuxt": "^2.1.4",
+    "core-js": "2.6.10",
+    "firebase": "^7.16.0",
     "nuxt": "^2.13.0"
   },
   "devDependencies": {
